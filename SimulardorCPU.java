@@ -89,9 +89,12 @@ public class SimulardorCPU {
                 return "bloqueado";
             } else if (idx == 2) {
                 System.out.println("    [input] " + processo.nome + " aguarda valor: ");
-                String entrada = inputScanner.nextLine();
+                String entrada = "";
+                while (entrada.isEmpty() && inputScanner.hasNextLine()) {
+                    entrada = inputScanner.nextLine().trim();
+                }
                 try {
-                    processo.acc = Integer.parseInt(entrada.trim());
+                    processo.acc = Integer.parseInt(entrada);
                 } catch (NumberFormatException e) {
                     System.out.println("    [ERRO] " + processo.nome + ": input invalido, usando 0");
                     processo.acc = 0;

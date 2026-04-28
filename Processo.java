@@ -29,7 +29,7 @@ public class Processo {
         this.labels = labels;
         this.pc = 0;
         this.acc = 0;
-        this.estado = EstadoProcesso.PRONTO;
+        this.estado = EstadoProcesso.ESPERANDO;
         this.deadline = arrival + periodo;
         this.proximo_arrival = arrival + periodo;
         this.ci_restante = ci;
