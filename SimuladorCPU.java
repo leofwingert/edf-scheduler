@@ -3,15 +3,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class SimulardorCPU {
+public class SimuladorCPU {
     private final Random random = new Random();
     private final Scanner inputScanner;
 
-    public SimulardorCPU() {
+    public SimuladorCPU() {
         this(new Scanner(System.in));
     }
 
-    public SimulardorCPU(Scanner inputScanner) {
+    public SimuladorCPU(Scanner inputScanner) {
         this.inputScanner = inputScanner;
     }
 

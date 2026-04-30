@@ -15,7 +15,7 @@ public class Main {
         List<Processo> processos = lerProcessos(sc);
         System.out.println("\nTotal de processos criados: " + processos.size());
 
-        SimulardorCPU cpu = new SimulardorCPU(sc);
+        SimuladorCPU cpu = new SimuladorCPU(sc);
 
         System.out.println("Quantos ciclos(ticks) deseja simular? ");
         int ciclos = sc.nextInt();

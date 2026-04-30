@@ -36,7 +36,7 @@ public class Parser {
     public Program carregarPrograma(String arquivoPath) {
         Program p = new Program();
         File arquivo = new File(arquivoPath);
-        String modo = null; // null, "code", "data"
+        String modo = null;
 
         try (Scanner sc = new Scanner(arquivo)) {
             while (sc.hasNextLine()) {
