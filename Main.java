@@ -64,7 +64,7 @@ public class Main {
             ciclosExecutados.put(processoAtual.nome, ciclosExecutados.get(processoAtual.nome) + 1);
 
             if (tempoAtual >= processoAtual.deadline && !processoAtual.deadline_reportado) {
-                imprimirDeadlineMiss(processoAtual);
+                imprimirDeadlineMiss(processoAtual, tempoAtual);
                 processoAtual.deadline_reportado = true;
                 deadlinePerdidas.put(processoAtual.nome, deadlinePerdidas.get(processoAtual.nome) + 1);
             }
@@ -150,8 +150,8 @@ public class Main {
         System.out.println("  >> " + p.nome + " encerrou");
     }
 
-    static void imprimirDeadlineMiss(Processo p) {
-        System.out.println("  !! " + p.nome + " PERDEU O DEADLINE! (deadline=" + p.deadline + ")");
+    static void imprimirDeadlineMiss(Processo p, int tempoAtual) {
+        System.out.println("  !! " + p.nome + " PERDEU O DEADLINE no tempo " + tempoAtual + "! (deadline=" + p.deadline + ")");
     }
 
     static void imprimirResumo(List<Processo> processos, Map<String, Integer> ciclosExecutados, Map<String, Integer> deadlinePerdidas) {

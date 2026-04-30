@@ -84,7 +84,8 @@ public class SimulardorCPU {
                 return "fim";
             } else if (idx == 1) {
                 System.out.println("    [print] " + processo.nome + ": " + processo.acc);
-                processo.bloqueado_ate = tempo + 1 + random.nextInt(3) + 1;
+                // simula tempo de input aleatorio entre 1 e 3 ticks
+                processo.bloqueado_ate = tempo + 1 + random.nextInt(3);
                 processo.estado = EstadoProcesso.BLOQUEADO;
                 return "bloqueado";
             } else if (idx == 2) {
@@ -99,7 +100,8 @@ public class SimulardorCPU {
                     System.out.println("    [ERRO] " + processo.nome + ": input invalido, usando 0");
                     processo.acc = 0;
                 }
-                processo.bloqueado_ate = tempo + 1 + random.nextInt(3) + 1;
+                // simula tempo de input aleatorio entre 1 e 3 ticks
+                processo.bloqueado_ate = tempo + 1 + random.nextInt(3);
                 processo.estado = EstadoProcesso.BLOQUEADO;
                 return "bloqueado";
             } 
