@@ -36,7 +36,7 @@ public class Main {
         imprimirCabecalho();
 
         for (int tempoAtual = 0; tempoAtual < ciclos; tempoAtual++) {
-            // libera processos que chegaram agora ou sairam de bloqueio
+            // libera processos que chegaram agora ou sairam de bloqueio para os prontos
             for (int i = processos.size() - 1; i >= 0; i--) {
                 Processo p = processos.get(i);
                 if ((p.estado == EstadoProcesso.ESPERANDO && p.arrival <= tempoAtual)
@@ -46,7 +46,7 @@ public class Main {
                     processos.remove(i);
                 }
             }
-
+            // ordena fila de prontos por menor deadline
             filaProntos.sort((a, b) -> Integer.compare(a.deadline, b.deadline));
 
             if (filaProntos.isEmpty()) {
@@ -54,21 +54,25 @@ public class Main {
                 continue;
             }
 
+            // executa processo atual (com menor deadline)
             Processo processoAtual = filaProntos.get(0);
             processoAtual.estado = EstadoProcesso.EXECUTANDO;
 
             imprimirTick(tempoAtual, processoAtual, filaProntos);
 
             String resultado = cpu.executarInstrucao(processoAtual, tempoAtual);
+            // atualiza variáveis de controle do processo
             processoAtual.ci_restante = processoAtual.ci_restante - 1;
             ciclosExecutados.put(processoAtual.nome, ciclosExecutados.get(processoAtual.nome) + 1);
 
+            // verifica se perdeu deadline, se sim marca como perdido e printa
             if (tempoAtual >= processoAtual.deadline && !processoAtual.deadline_reportado) {
                 imprimirDeadlineMiss(processoAtual, tempoAtual);
                 processoAtual.deadline_reportado = true;
                 deadlinePerdidas.put(processoAtual.nome, deadlinePerdidas.get(processoAtual.nome) + 1);
             }
 
+            // verifica retorno da cpu
             if (resultado.equals("bloqueado")) {
                 filaProntos.remove(processoAtual);
                 processos.add(processoAtual);
@@ -92,7 +96,7 @@ public class Main {
         sc.close();
     }
 
-    //Input 
+    // input 
     static List<Processo> lerProcessos(Scanner sc) {
         System.out.print("Quantos processos deseja criar? ");
         int quantidade = sc.nextInt();
@@ -124,7 +128,7 @@ public class Main {
         return processos;
     }
 
-    //Prints
+    // prints
     static void imprimirCabecalho() {
         System.out.println("\nTempo   Executando             Fila de prontos");
         System.out.println("------------------------------------------------------------");

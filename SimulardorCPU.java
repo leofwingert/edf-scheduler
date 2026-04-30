@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-// logging done via System.out.println instead of java.util.function.Consumer
 
 public class SimulardorCPU {
     private final Random random = new Random();
